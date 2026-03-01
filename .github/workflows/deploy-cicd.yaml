@@ -1,0 +1,87 @@
+# ============================================================
+# Workflow: Deploy Next.js Portfolio to GitHub Pages
+# ============================================================
+name: Portfolio-Deployment
+
+# Trigger:
+# - Auto deploy when src changes on main
+# - Manual trigger allowed
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+
+# Required permissions for GitHub Pages OIDC deployment
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # GitHub Pages environment (needed for proper URL binding)
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # --------------------------------------------------------
+      # STEP 1: Checkout repository
+      # Pulls your Next.js source code into runner
+      # --------------------------------------------------------
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # --------------------------------------------------------
+      # STEP 2: Setup Node.js (latest LTS recommended)
+      # Enables node + npm inside runner
+      # --------------------------------------------------------
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      # --------------------------------------------------------
+      # STEP 3: Install dependencies
+      # Clean deterministic install
+      # --------------------------------------------------------
+      - name: Install Dependencies
+        run: npm ci
+
+      # --------------------------------------------------------
+      # STEP 4: Build Next.js project
+      # Assumes you have:
+      #   next.config.js -> output: 'export'
+      # And static export output is configured to 'dist'
+      # --------------------------------------------------------
+      - name: Build Project
+        run: npm run build
+
+      # --------------------------------------------------------
+      # STEP 5: Setup GitHub Pages
+      # Configures Pages deployment metadata
+      # --------------------------------------------------------
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      # --------------------------------------------------------
+      # STEP 6: Upload ONLY built static artifacts
+      # We upload dist/ folder instead of entire repo
+      # --------------------------------------------------------
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './dist'
+
+      # --------------------------------------------------------
+      # STEP 7: Deploy to GitHub Pages
+      # Publishes uploaded artifact
+      # --------------------------------------------------------
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
