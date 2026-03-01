@@ -2,7 +2,7 @@ export const USER = "shivang";
 export const HOSTNAME = "shivanggupta.in";
 export const LinkedIn = "https://linkedin.com/in/shivang21007";
 export const GitHub = "https://github.com/shivang21007";
-export const Email = "shivanggupta26@gmail.com";
+export const Email = "shivanggupta2611@gmail.com";
 
 export const files: Record<string, string> = {
     "about.txt": `Backend & DevOps Engineer.
@@ -13,16 +13,18 @@ export const files: Record<string, string> = {
     "skills.txt": `Core Expertise:
   - Linux Internals (process, memory, namespaces)
   - Docker / Container Runtime
+  - GitLab Actions
   - Kubernetes (CKA path)
   - AWS Architecture
+  - Terraform 
   - CI/CD Pipelines
   - Database Optimization
-  - Shell Scripting & Automation`,
+  - Shell & Python Scripting & Automation`,
   
     "projects.txt": `Highlighted Work:
   - Built custom CI/CD pipelines
-  - Designed containerized microservices
-  - Automated infrastructure provisioning
+  - Designed containerized and distributed microservices
+  - Automated infrastructure provisioning using Terraform
   - Deep dive tooling for TLS & network audits`,
   
     "contact.txt": `Let's connect:
