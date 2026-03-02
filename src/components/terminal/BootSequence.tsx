@@ -15,7 +15,7 @@ export default function BootSequence({ onDone }: { onDone: () => void }) {
 
   useEffect(() => {
     if (index < logs.length) {
-      const timer = setTimeout(() => setIndex(index + 1), 400);
+      const timer = setTimeout(() => setIndex(index + 1), 500);
       return () => clearTimeout(timer);
     } else {
       onDone();

@@ -75,6 +75,9 @@ export function executeCommand(input: string): string {
     case "htop":
       return "Launching system monitor...";
 
+    case "pwd":
+      return "/home/shivang";
+
     case "":
       return "";
 
