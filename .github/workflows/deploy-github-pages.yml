@@ -24,9 +24,11 @@ jobs:
     runs-on: ubuntu-latest
 
     # GitHub Pages environment (needed for proper URL binding)
-    environment:
+    env:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      REPO_NAME: ${{ github.repository }}
+      DEPLOY_TARGET: gh-pages
 
     steps:
       # --------------------------------------------------------
