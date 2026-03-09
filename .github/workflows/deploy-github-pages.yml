@@ -1,7 +1,7 @@
 # ============================================================
 # Workflow: Deploy Next.js Portfolio to GitHub Pages
 # ============================================================
-name: Portfolio-Deployment
+name: Deploy to Github Pages
 
 # Trigger:
 # - Auto deploy when src changes on main
