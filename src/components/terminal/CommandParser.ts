@@ -78,6 +78,12 @@ export function executeCommand(input: string): string {
     case "pwd":
       return "/home/shivang";
 
+    case "uname":
+      return "Linux";
+
+    case "uname -a":
+      return "Linux shivanggupta.in 6.8.0-101-generic #101-Ubuntu SMP PREEMPT_DYNAMIC Mon Feb  9 10:15:05 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux";
+
     case "":
       return "";
 
