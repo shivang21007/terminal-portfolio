@@ -1,5 +1,5 @@
 # Terminal Portfolio
-
+![Terminal Portfolio](public/Screenshot.png)
 A terminal-themed developer portfolio built with [Next.js](https://nextjs.org) and Tailwind CSS. 
 
 ## Getting Started
