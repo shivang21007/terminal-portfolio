@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, ReactNode } from "react";
-import { USER, HOSTNAME } from "@/lib/constants";
+import { Email, GitHub, HOSTNAME, LinkedIn, USER } from "@/lib/constants";
 import { executeCommand } from "./CommandParser";
 import BootSequence from "./BootSequence";
 import WelcomeMessage, { AsciiArt } from "./WelcomeMessage";
@@ -18,6 +18,11 @@ function isAboutCommand(input: string): boolean {
   return trimmed === "about" || trimmed === "cat about.txt";
 }
 
+function isContactCommand(input: string): boolean {
+  const trimmed = input.trim().toLowerCase();
+  return trimmed === "contact" || trimmed === "cat contact.txt";
+}
+
 function AboutOutput() {
   return (
     <div className="mt-1">
@@ -25,6 +30,37 @@ function AboutOutput() {
       <div className="mt-2 whitespace-pre-wrap text-green-400">
         {files["about.txt"]}
       </div>
+    </div>
+  );
+}
+
+function ContactOutput() {
+  return (
+    <div className="mt-1 whitespace-pre-wrap text-green-400">
+      <div>Let's connect:</div>
+      <div>
+        {"  LinkedIn: "}
+        <a
+          href={LinkedIn}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-300 underline underline-offset-2"
+        >
+          {LinkedIn}
+        </a>
+      </div>
+      <div>
+        {"  GitHub: "}
+        <a
+          href={GitHub}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-300 underline underline-offset-2"
+        >
+          {GitHub}
+        </a>
+      </div>
+      <div>{`  Email: ${Email}`}</div>
     </div>
   );
 }
@@ -66,7 +102,9 @@ export default function Terminal() {
 
     const output: ReactNode = isAboutCommand(trimmedInput)
       ? <AboutOutput />
-      : executeCommand(trimmedInput);
+      : isContactCommand(trimmedInput)
+        ? <ContactOutput />
+        : executeCommand(trimmedInput);
 
     setHistory(prev => [
       ...prev,
