@@ -31,6 +31,11 @@ jobs:
       REPO_NAME: ${{ github.repository }}
       DEPLOY_TARGET: gh-pages
 
+    # Concurrency control to prevent multiple deployments from running simultaneously
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       # --------------------------------------------------------
       # STEP 1: Checkout repository

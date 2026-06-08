@@ -20,8 +20,9 @@ jobs:
       REPO_NAME: ${{ github.repository }}
       DEPLOY_TARGET: cloudflare-pages
 
+    # Concurrency control to prevent multiple deployments from running simultaneously
     concurrency:
-      group: "pages"
+      group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
 
     steps:
