@@ -3,15 +3,14 @@
 # ============================================================
 name: Deploy to Github Pages
 
-# Trigger:
-# - Auto deploy when src changes on main
-# - Manual trigger allowed
+# DISABLED — GitHub Pages deploy is paused (Cloudflare Pages is active).
+# To re-enable: uncomment the `on.push` block below and remove `if: false` from the deploy job.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
   workflow_dispatch:
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'src/**'
 
 # Required permissions for GitHub Pages OIDC deployment
 permissions:
