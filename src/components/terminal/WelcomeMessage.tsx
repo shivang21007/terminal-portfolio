@@ -31,10 +31,12 @@ export const faceArt: string[] = [
 
 export function AsciiArt() {
   return (
-    <div className="flex flex-col md:flex-row md:gap-4 items-start">
-      <div className="text-green-400 leading-[1.2] select-none overflow-hidden">
+    <div className="flex flex-col md:flex-row md:gap-4 items-start max-w-full">
+      <div className="max-w-full overflow-x-auto text-green-400 leading-[1.2] select-none">
         {asciiName.map((line, i) => (
-          <div key={i} className="whitespace-pre">{line}</div>
+          <div key={i} className="whitespace-pre text-[10px] sm:text-xs md:text-sm lg:text-base">
+            {line}
+          </div>
         ))}
       </div>
       <div className="hidden md:block text-gray-500 leading-[1.2] select-none shrink-0">

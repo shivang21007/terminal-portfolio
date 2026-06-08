@@ -51,10 +51,10 @@ function AboutOutput() {
 
 function ContactOutput() {
   return (
-    <div className="mt-1 whitespace-pre-wrap text-green-400">
+    <div className="mt-1 whitespace-pre-wrap break-words text-green-400">
       <div>Let's connect:</div>
       <div>{`  Location: ${LOCATION}`}</div>
-      <div>
+      <div className="break-all">
         {"  Email: "}
         <a
           href={`mailto:${Email}`}
@@ -72,7 +72,7 @@ function ContactOutput() {
           {Phone}
         </a>
       </div>
-      <div>
+      <div className="break-all">
         {"  Website: "}
         <a
           href={Website}
@@ -83,7 +83,7 @@ function ContactOutput() {
           {Website}
         </a>
       </div>
-      <div>
+      <div className="break-all">
         {"  LinkedIn: "}
         <a
           href={LinkedIn}
@@ -94,7 +94,7 @@ function ContactOutput() {
           {LinkedIn}
         </a>
       </div>
-      <div>
+      <div className="break-all">
         {"  GitHub: "}
         <a
           href={GitHub}
@@ -111,7 +111,7 @@ function ContactOutput() {
 
 function ProjectsOutput() {
   return (
-    <div className="mt-1 space-y-4 text-green-400">
+    <div className="mt-1 space-y-4 break-words text-green-400">
       {projects.map((project) => (
         <div key={project.title}>
           <div className="flex flex-wrap items-baseline gap-x-2">
@@ -148,7 +148,7 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   }, [history, isCleared]);
 
   const handleCommand = () => {
@@ -219,7 +219,7 @@ export default function Terminal() {
   }
 
   const Prompt = () => (
-    <span className="mr-2 shrink-0">
+    <span className="mr-2 shrink-0 whitespace-nowrap">
       <span className="text-yellow-400">{USER}</span>
       <span className="text-white">@</span>
       <span className="text-green-400">{HOSTNAME}</span>
@@ -229,30 +229,30 @@ export default function Terminal() {
 
   return (
     <div
-      className="p-5 pr-8 text-base h-screen overflow-y-auto overflow-x-hidden bg-[#0d1117] text-gray-300"
+      className="w-full max-w-full p-3 pr-4 sm:p-5 sm:pr-8 text-xs sm:text-sm md:text-base min-h-dvh h-dvh overflow-y-auto overflow-x-hidden bg-[#0d1117] text-gray-300"
       onClick={() => inputRef.current?.focus()}
     >
       {!isCleared && <WelcomeMessage />}
 
       {history.map((item) => (
-        <div key={item.id} className="mb-2">
-          <div className="flex">
+        <div key={item.id} className="mb-2 min-w-0">
+          <div className="flex flex-wrap items-start gap-x-2 min-w-0">
             <Prompt />
-            <span className="text-white">{item.command}</span>
+            <span className="min-w-0 flex-1 break-all text-white">{item.command}</span>
           </div>
           {item.output && (
             typeof item.output === "string"
-              ? <div className="whitespace-pre-wrap mt-1 text-green-400">{item.output}</div>
+              ? <div className="whitespace-pre-wrap break-words mt-1 text-green-400">{item.output}</div>
               : item.output
           )}
         </div>
       ))}
 
-      <div className="flex">
+      <div className="flex flex-wrap items-start gap-x-2 min-w-0">
         <Prompt />
         <input
           ref={inputRef}
-          className="bg-transparent outline-none flex-1 text-white"
+          className="min-w-0 flex-1 bg-transparent outline-none text-white"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

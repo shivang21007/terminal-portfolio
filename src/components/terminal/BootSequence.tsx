@@ -23,7 +23,7 @@ export default function BootSequence({ onDone }: { onDone: () => void }) {
   }, [index]);
 
   return (
-    <div className="p-5 text-base h-screen bg-[\#0d1117] text-gray-300">
+    <div className="p-3 sm:p-5 text-xs sm:text-sm md:text-base min-h-dvh h-dvh overflow-x-hidden bg-[#0d1117] text-gray-300">
       {logs.slice(0, index).map((log, i) => (
         <div key={i}>{log}</div>
       ))}
