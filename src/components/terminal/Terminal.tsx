@@ -1,7 +1,17 @@
 "use client";
 
 import { useState, useRef, useEffect, ReactNode } from "react";
-import { Email, GitHub, HOSTNAME, LinkedIn, USER } from "@/lib/constants";
+import {
+  Email,
+  GitHub,
+  HOSTNAME,
+  LinkedIn,
+  LOCATION,
+  Phone,
+  USER,
+  Website,
+  projects,
+} from "@/lib/constants";
 import { executeCommand } from "./CommandParser";
 import BootSequence from "./BootSequence";
 import WelcomeMessage, { AsciiArt } from "./WelcomeMessage";
@@ -23,6 +33,11 @@ function isContactCommand(input: string): boolean {
   return trimmed === "contact" || trimmed === "cat contact.txt";
 }
 
+function isProjectsCommand(input: string): boolean {
+  const trimmed = input.trim().toLowerCase();
+  return trimmed === "projects" || trimmed === "cat projects.txt";
+}
+
 function AboutOutput() {
   return (
     <div className="mt-1">
@@ -38,6 +53,36 @@ function ContactOutput() {
   return (
     <div className="mt-1 whitespace-pre-wrap text-green-400">
       <div>Let's connect:</div>
+      <div>{`  Location: ${LOCATION}`}</div>
+      <div>
+        {"  Email: "}
+        <a
+          href={`mailto:${Email}`}
+          className="text-cyan-300 underline underline-offset-2"
+        >
+          {Email}
+        </a>
+      </div>
+      <div>
+        {"  Phone: "}
+        <a
+          href={`tel:${Phone}`}
+          className="text-cyan-300 underline underline-offset-2"
+        >
+          {Phone}
+        </a>
+      </div>
+      <div>
+        {"  Website: "}
+        <a
+          href={Website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-300 underline underline-offset-2"
+        >
+          {Website}
+        </a>
+      </div>
       <div>
         {"  LinkedIn: "}
         <a
@@ -60,7 +105,33 @@ function ContactOutput() {
           {GitHub}
         </a>
       </div>
-      <div>{`  Email: ${Email}`}</div>
+    </div>
+  );
+}
+
+function ProjectsOutput() {
+  return (
+    <div className="mt-1 space-y-4 text-green-400">
+      {projects.map((project) => (
+        <div key={project.title}>
+          <div className="flex flex-wrap items-baseline gap-x-2">
+            <span>{project.title}</span>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 underline underline-offset-2 italic"
+            >
+              Live
+            </a>
+          </div>
+          <ul className="mt-1 list-none space-y-1 pl-2">
+            {project.bullets.map((bullet) => (
+              <li key={bullet}>{`- ${bullet}`}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
@@ -104,7 +175,9 @@ export default function Terminal() {
       ? <AboutOutput />
       : isContactCommand(trimmedInput)
         ? <ContactOutput />
-        : executeCommand(trimmedInput);
+        : isProjectsCommand(trimmedInput)
+          ? <ProjectsOutput />
+          : executeCommand(trimmedInput);
 
     setHistory(prev => [
       ...prev,

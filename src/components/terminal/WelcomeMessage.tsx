@@ -56,7 +56,7 @@ export default function WelcomeMessage() {
         {/* <p>
           This project&apos;s source code can be found in this project&apos;s{" "}
           <a
-            href="https://github.com/shivanggupta/terminal-portfolio"
+            href="https://github.com/shivang21007/terminal-portfolio"
             target="_blank"
             rel="noreferrer"
             className="text-yellow-400 underline decoration-dashed hover:text-yellow-300"

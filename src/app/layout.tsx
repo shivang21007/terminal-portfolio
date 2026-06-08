@@ -9,9 +9,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shivang Gupta | Backend & DevOps Engineer",
+  title: "Shivang Gupta | DevOps & Site Reliability Engineer",
   description:
-    "Terminal-style portfolio of Shivang Gupta, Backend & DevOps Engineer.",
+    "Terminal-style portfolio of Shivang Gupta — DevOps & SRE engineer specializing in Kubernetes, Terraform, CI/CD, and AWS.",
 };
 
 export default function RootLayout({
