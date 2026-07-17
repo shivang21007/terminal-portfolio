@@ -80,7 +80,7 @@ export function executeCommand(input: string): string {
 
     case "uname":
     case "uname -a":
-      return "Linux shivanggupta.in 6.8.0-101-generic #101-Ubuntu SMP PREEMPT_DYNAMIC Mon Feb  9 10:15:05 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux";
+      return "Linux terminal.shivanggupta.in 6.8.0-101-generic #101-Ubuntu SMP PREEMPT_DYNAMIC Mon Feb  9 10:15:05 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux";
 
     case "id":
       return "uid=1001(shivang) gid=1001(shivang) groups=1001(shivang),27(sudo),988(docker)";

@@ -1,5 +1,5 @@
 export const USER = "shivang";
-export const HOSTNAME = "shivanggupta.in";
+export const HOSTNAME = "terminal.shivanggupta.in";
 export const FULL_NAME = "Shivang Gupta";
 export const LOCATION = "Delhi, India";
 export const ROLE = "DevOps & Site Reliability Engineer";

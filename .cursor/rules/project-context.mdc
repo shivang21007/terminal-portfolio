@@ -1,0 +1,20 @@
+---
+description: Terminal portfolio project context — read AGENTS.md for full details
+alwaysApply: true
+---
+
+# Terminal Portfolio
+
+Static Next.js terminal portfolio for Shivang Gupta (DevOps/SRE). Client-only, no backend.
+
+**Read first(if required):** `AGENTS.md` (architecture, commands, deployment, conventions).
+
+**Content:** single source in `src/lib/constants.ts` — do not duplicate profile text elsewhere.
+
+**Terminal:** `src/components/terminal/Terminal.tsx` + `CommandParser.ts`. Rich React outputs for `about`, `contact`, `projects` (clickable links) — preserve when editing.
+
+**Deploy:** Cloudflare Pages active; GitHub Pages workflow disabled.
+
+**Planned:** just-bash hybrid shell — see `docs/prd/just-bash-integration.md` (PRD only, not implemented).
+
+**Mobile:** test 375px; use `break-words`, `inline: "nearest"` on scrollIntoView, no broken CSS resets on `*`.
